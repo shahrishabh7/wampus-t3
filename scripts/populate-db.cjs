@@ -78,6 +78,7 @@ async function populateDatabase() {
                 rent: parseInt(lease.rent),
                 // @ts-ignore
                 building_name: lease.building_name,
+                // @ts-ignore
                 building_id: buildingIdMap[lease.building_name],
                 signing_date: new Date(lease.signing_date),
                 average_walk_time: parseInt(lease.average_walk_time),
