@@ -18,9 +18,6 @@ model Building {
     amenities String // DB doesn't support list of strings, we'll parse a long string for now
 
     createdAt DateTime @default(now())
-    authorId  String
-
-    @@index([authorId])
 }
 
 model Leases {
