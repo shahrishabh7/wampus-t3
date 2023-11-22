@@ -20,8 +20,9 @@ model Building {
     createdAt DateTime @default(now())
 }
 
-model Leases {
+model Lease {
     id                  String   @id @default(cuid())
+    name                String
     bedroom_count       Int
     bathroom_count      Int
     sqft                Int

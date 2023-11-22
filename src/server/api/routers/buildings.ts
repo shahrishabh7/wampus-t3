@@ -34,12 +34,6 @@ const addImagesToBuildings = async (buildings: Building[]) => {
         },
       };
     }
-    // else {
-    //   throw new TRPCError({
-    //     code: "INTERNAL_SERVER_ERROR",
-    //     message: `Image not found for building: ${building.name}`,
-    //   });
-    // }
   });
 };
 

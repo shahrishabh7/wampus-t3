@@ -14,24 +14,21 @@ export const Card = (props: { buildingData: BuildingWithImage }) => {
   return (
     <div className="h-96">
       {" "}
-      {/* Set a fixed height for the card */}
-      <Link href={`/building/${props.buildingData.building.id}`}>
+      <Link href={`/${props.buildingData.building.id}`}>
         <div className="h-full max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
           <a href="#">
             <div className="relative h-3/5 overflow-hidden">
               {" "}
-              {/* Set a fixed height for the image container */}
               <Image
-                className="h-full w-full rounded-t-lg object-cover" // Use object-cover to ensure the image covers the entire container
+                className="h-full w-full rounded-t-lg object-cover"
                 src={props.buildingData.image.imagePath ?? "/placeholder.png"}
                 alt={props.buildingData.building.name}
-                layout="fill" // Use layout="fill" to make the image fill its container
+                layout="fill"
               />
             </div>
           </a>
           <div className="flex h-2/5 flex-col justify-between p-5">
             {" "}
-            {/* Set a fixed height for the content container */}
             <a href="#">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {props.buildingData.building.name}
