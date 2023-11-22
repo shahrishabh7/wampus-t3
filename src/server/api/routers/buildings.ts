@@ -1,6 +1,47 @@
+import { Building } from "@prisma/client";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+
+const fs = require("fs");
+const path = require("path");
+
+const addImagesToBuildings = async (buildings: Building[]) => {
+  const publicDirectoryPath = "./public";
+  const buildingImages = fs.readdirSync(publicDirectoryPath);
+
+  return buildings.map((building) => {
+    const normalizedBuildingName = building.name
+      .toLowerCase()
+      .replace(/\s+/g, ""); // Make lowercase and remove spaces
+    const imageName = `${normalizedBuildingName}.jpg`;
+
+    if (buildingImages.includes(imageName)) {
+      const imagePath = `/${imageName}`;
+
+      return {
+        building,
+        image: {
+          imagePath,
+        },
+      };
+    } else {
+      return {
+        building,
+        image: {
+          imagePath: null,
+        },
+      };
+    }
+    // else {
+    //   throw new TRPCError({
+    //     code: "INTERNAL_SERVER_ERROR",
+    //     message: `Image not found for building: ${building.name}`,
+    //   });
+    // }
+  });
+};
 
 export const buildingsRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
@@ -8,6 +49,6 @@ export const buildingsRouter = createTRPCRouter({
       take: 100,
       orderBy: [{ createdAt: "desc" }],
     });
-    return buildings;
+    return addImagesToBuildings(buildings);
   }),
 });
