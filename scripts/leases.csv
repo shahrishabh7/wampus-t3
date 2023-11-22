@@ -1,0 +1,4 @@
+name,bedroom_count,bathroom_count,sqft,rent,building_name,signing_date,average_walk_time,satisfaction_rating
+Western,3,3,3000,3000,2400 Nueces,2023-11-22T02:19:55.091Z,10,8
+Longhorn,1,1,1000,1000,2400 Nueces,2023-11-22T02:19:55.091Z,10,7.1
+Dogwood,2,2,2000,2000,2400 Nueces,2023-11-22T02:19:55.091Z,10,2.5

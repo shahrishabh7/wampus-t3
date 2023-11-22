@@ -5,7 +5,6 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 const fs = require("fs");
-const path = require("path");
 
 const addImagesToBuildings = async (buildings: Building[]) => {
   const publicDirectoryPath = "./public";
