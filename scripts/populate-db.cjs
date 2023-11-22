@@ -26,7 +26,7 @@ async function populateDatabase() {
 
         // Only add new buildings to the database
         const newBuildingsData = buildingsData.filter(
-          (building) => !existingBuildings.some((b) => b.name === building.name)
+          (building) => !existingBuildings.some((/** @type {{ name: any; }} */ b) => b.name === building.name)
         );
 
         // Populate the Buildings table with new buildings
