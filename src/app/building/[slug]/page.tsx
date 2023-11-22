@@ -7,7 +7,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
     buildingId: params.slug,
   });
   const building = await api.building.getById.query({ id: params.slug });
-  console.log("building", building);
   if (!building) {
     return <div>Building not found</div>;
   }
