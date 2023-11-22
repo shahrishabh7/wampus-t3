@@ -6,7 +6,7 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 export const leasesRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
-    const leases = await ctx.db.leases.findMany({
+    const leases = await ctx.db.lease.findMany({
       take: 100,
     });
     return leases;

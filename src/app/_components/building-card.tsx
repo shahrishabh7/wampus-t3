@@ -14,7 +14,7 @@ export const Card = (props: { buildingData: BuildingWithImage }) => {
   return (
     <div className="h-96">
       {" "}
-      <Link href={`/${props.buildingData.building.id}`}>
+      <Link href={`/building/${props.buildingData.building.id}`}>
         <div className="h-full max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
           <a href="#">
             <div className="relative h-3/5 overflow-hidden">
@@ -23,7 +23,8 @@ export const Card = (props: { buildingData: BuildingWithImage }) => {
                 className="h-full w-full rounded-t-lg object-cover"
                 src={props.buildingData.image.imagePath ?? "/placeholder.png"}
                 alt={props.buildingData.building.name}
-                layout="fill"
+                width={500}
+                height={500}
               />
             </div>
           </a>

@@ -44,4 +44,18 @@ export const buildingsRouter = createTRPCRouter({
     });
     return addImagesToBuildings(buildings);
   }),
+  getById: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      }),
+    )
+    .query(async ({ ctx, input }) =>
+      ctx.db.building.findFirst({
+        where: {
+          id: input.id,
+        },
+        take: 100,
+      }),
+    ),
 });
