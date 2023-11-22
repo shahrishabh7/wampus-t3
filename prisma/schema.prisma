@@ -12,12 +12,13 @@ datasource db {
 }
 
 model Building {
-    id        String   @id @default(cuid())
+    id        String @id @default(cuid())
     name      String
-    createdAt DateTime @default(now())
+    address   String
+    amenities String // DB doesn't support list of strings, we'll parse a long string for now
 
-    content  String @db.VarChar(255)
-    authorId String
+    createdAt DateTime @default(now())
+    authorId  String
 
     @@index([authorId])
 }
