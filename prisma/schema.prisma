@@ -6,15 +6,34 @@ generator client {
 }
 
 datasource db {
-    provider = "sqlite"
-    url      = env("DATABASE_URL")
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
+model Building {
+    id        String   @id @default(cuid())
     name      String
     createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
 
-    @@index([name])
+    content  String @db.VarChar(255)
+    authorId String
+
+    @@index([authorId])
+}
+
+model Leases {
+    id                  String   @id @default(cuid())
+    bedroom_count       Int
+    bathroom_count      Int
+    sqft                Int
+    rent                Int
+    building_id         String
+    signing_date        DateTime @default(now())
+    average_walk_time   Int
+    satisfaction_rating Float
+
+    create_date DateTime @default(now())
+
+    @@index([building_id])
 }
