@@ -1,6 +1,6 @@
 - [ ] Add website field to building table
 - [ ] Search / filter buildings feature for landing page
-- [ ] Landing page
+- [ ] Landing page (about Wampus.fyi)
 - [ ] Building page (lease data)
   - lease IQR for header
   - graph of rent growth rates ?

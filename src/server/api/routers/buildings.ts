@@ -29,7 +29,7 @@ const addImagesToBuildings = async (buildings: Building[]) => {
       return {
         building,
         image: {
-          imagePath: null,
+          imagePath: "./placeholder.png",
         },
       };
     }
@@ -50,12 +50,14 @@ export const buildingsRouter = createTRPCRouter({
         id: z.string(),
       }),
     )
-    .query(async ({ ctx, input }) =>
-      ctx.db.building.findFirst({
+    .query(async ({ ctx, input }) => {
+      const building = await ctx.db.building.findFirst({
         where: {
           id: input.id,
         },
         take: 100,
-      }),
-    ),
+      });
+      const buildingArray = building ? [building] : [];
+      return addImagesToBuildings(buildingArray);
+    }),
 });
