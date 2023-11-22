@@ -1,0 +1,4 @@
+- [ ] Add website field to building table
+- [ ] Search / filter buildings feature for landing page
+- [ ] Landing page
+- [ ] Building page (lease data)
