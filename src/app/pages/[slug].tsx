@@ -5,7 +5,9 @@ import { PageLayout } from "../_components/layout";
 import { LoadingPage } from "../_components/loading";
 import { api } from "~/trpc/server";
 
-const BuildingPage: NextPage<{ buildingId: string }> = ({ buildingId }) => {
+const BuildingPage: NextPage<{ buildingId: string }> = async ({
+  buildingId,
+}) => {
   const data = await api.lease.getByBuildingId.query({
     buildingId: buildingId,
   });
