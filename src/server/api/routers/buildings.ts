@@ -8,7 +8,6 @@ export const buildingsRouter = createTRPCRouter({
       take: 100,
       orderBy: [{ createdAt: "desc" }],
     });
-
     return buildings;
   }),
 });
