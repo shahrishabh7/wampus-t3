@@ -1,5 +1,6 @@
 import { BuildingHeader } from "~/app/_components/building-header";
 import { PageLayout } from "~/app/_components/layout";
+import { LeaseView } from "~/app/_components/lease-view";
 import { api } from "~/trpc/server";
 
 export default async function Page({ params }: { params: { slug: string } }) {
@@ -15,11 +16,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <div>
       <PageLayout>
         <BuildingHeader buildingData={building[0]}></BuildingHeader>
-        <ul>
-          {leases.map((lease) => (
-            <li key={lease.id}>{lease.name}</li>
-          ))}
-        </ul>
+        <LeaseView leaseData={leases}></LeaseView>
       </PageLayout>
     </div>
   );

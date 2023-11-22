@@ -58,7 +58,7 @@ export const BuildingHeader = (props: { buildingData: BuildingWithImage }) => {
                 clip-rule="evenodd"
               />
             </svg>
-            $1,100k &ndash; $1,250k
+            $1,100k &ndash; $1,300k
           </div>
         </div>
       </div>
