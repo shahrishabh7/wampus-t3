@@ -29,15 +29,15 @@ export const LeaseView = (props: { leaseData: Leases }) => {
     return columnDef;
   });
 
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-  });
+  // const table = useReactTable({
+  //   data,
+  //   columns,
+  //   getCoreRowModel: getCoreRowModel(),
+  // });
 
   return (
     <div className="p-2">
-      <table>
+      {/* <table>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -63,7 +63,7 @@ export const LeaseView = (props: { leaseData: Leases }) => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 };
