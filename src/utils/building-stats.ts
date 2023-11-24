@@ -1,18 +1,5 @@
-import { RouterOutputs } from "~/trpc/shared";
-
-type Leases = RouterOutputs["lease"]["getAll"];
-
-export const calculateAverageRent = (leases: Leases): number => {
-  const totalRent = leases.reduce((sum, lease) => sum + lease.rent, 0);
-  const averageRent = totalRent / leases.length;
+export const calculateAverage = (values: number[]): number => {
+  const totalRent = values.reduce((sum, value) => sum + value, 0);
+  const averageRent = totalRent / values.length;
   return averageRent;
-};
-
-export const calculateSatisfactionRating = (leases: Leases): number => {
-  const totalSatisfaction = leases.reduce(
-    (sum, lease) => sum + lease.satisfaction_rating,
-    0,
-  );
-  const averageSatisfaction = totalSatisfaction / leases.length;
-  return averageSatisfaction;
 };

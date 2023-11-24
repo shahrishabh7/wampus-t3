@@ -8,10 +8,7 @@ import {
 } from "@tanstack/react-table";
 import { RouterOutputs } from "~/trpc/shared";
 import TremorCard from "./tremor-card";
-import {
-  calculateAverageRent,
-  calculateSatisfactionRating,
-} from "~/utils/building-stats";
+import { calculateAverage } from "~/utils/building-stats";
 
 type Leases = RouterOutputs["lease"]["getAll"];
 
@@ -21,8 +18,10 @@ export const LeaseView = (props: { leaseData: Leases }) => {
   }
 
   const data = props.leaseData;
-  const averageRent = calculateAverageRent(data);
-  const satisfactionRating = calculateSatisfactionRating(data);
+  const averageRent = calculateAverage(data.map((lease) => lease.rent));
+  const satisfactionRating = calculateAverage(
+    data.map((lease) => lease.satisfaction_rating),
+  );
 
   return (
     <div className="flex p-2">
