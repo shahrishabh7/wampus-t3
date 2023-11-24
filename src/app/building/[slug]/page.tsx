@@ -16,7 +16,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <div>
       <PageLayout>
         <BuildingHeader buildingData={building[0]}></BuildingHeader>
-        <LeaseView leaseData={leases}></LeaseView>
+        {/* <LeaseView leaseData={leases}></LeaseView> */}
+        <div>
+          {leases.map((lease) => (
+            <div>{lease.satisfaction_rating}</div>
+          ))}
+        </div>
       </PageLayout>
     </div>
   );
