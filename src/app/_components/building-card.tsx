@@ -6,7 +6,7 @@ import { RouterOutputs } from "~/trpc/shared";
 
 type BuildingWithImage = RouterOutputs["building"]["getAll"][number];
 
-export const Card = (props: { buildingData: BuildingWithImage }) => {
+export const BuildingCard = (props: { buildingData: BuildingWithImage }) => {
   if (!props.buildingData) {
     return <div>No building data found...</div>;
   }

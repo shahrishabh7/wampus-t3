@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { api } from "~/trpc/server";
 import Image from "next/image";
-import { Card } from "./building-card";
+import { BuildingCard } from "./building-card";
 
 export default async function BuildingDisplay() {
   const data = await api.building.getAll.query();
@@ -15,7 +15,7 @@ export default async function BuildingDisplay() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {data.map((buildingData) => (
           <div key={buildingData.building.id}>
-            <Card buildingData={buildingData}></Card>
+            <BuildingCard buildingData={buildingData}></BuildingCard>
           </div>
         ))}
       </div>

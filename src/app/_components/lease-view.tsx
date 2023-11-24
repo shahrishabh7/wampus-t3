@@ -7,10 +7,13 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { RouterOutputs } from "~/trpc/shared";
+import TremorCard from "./tremor-card";
+import {
+  calculateAverageRent,
+  calculateSatisfactionRating,
+} from "~/utils/building-stats";
 
 type Leases = RouterOutputs["lease"]["getAll"];
-
-const columnHelper = createColumnHelper<any>();
 
 export const LeaseView = (props: { leaseData: Leases }) => {
   if (!props.leaseData || props.leaseData.length === 0) {
@@ -18,52 +21,20 @@ export const LeaseView = (props: { leaseData: Leases }) => {
   }
 
   const data = props.leaseData;
-  const keys = Object.keys(data[0]);
-
-  const columns: Column[] = keys.map((key) => {
-    const columnDef = columnHelper.accessor(key, {
-      id: key,
-      header: key,
-    });
-
-    return columnDef;
-  });
-
-  // const table = useReactTable({
-  //   data,
-  //   columns,
-  //   getCoreRowModel: getCoreRowModel(),
-  // });
+  const averageRent = calculateAverageRent(data);
+  const satisfactionRating = calculateSatisfactionRating(data);
 
   return (
-    <div className="p-2">
-      {/* <table>
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th colSpan={header.colSpan} key={header.id}>
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext(),
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
+    <div className="flex p-2">
+      <TremorCard
+        title={"Average Rent"}
+        value={`$ ${averageRent.toFixed(2)}`}
+      ></TremorCard>
+      <TremorCard
+        title={"Average Satisfaction Rating"}
+        value={satisfactionRating.toFixed(1)}
+      ></TremorCard>
+      <TremorCard title={"asdf"} value={"asdf"}></TremorCard>
     </div>
   );
 };
