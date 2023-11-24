@@ -12,7 +12,7 @@ export default async function BuildingDisplay() {
       <h1 className="font-extrabold tracking-tight text-gray-900 sm:text-[3rem]">
         Buildings
       </h1>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 shadow-md md:grid-cols-2 lg:grid-cols-3">
         {data.map((buildingData) => (
           <div key={buildingData.building.id}>
             <BuildingCard buildingData={buildingData}></BuildingCard>
