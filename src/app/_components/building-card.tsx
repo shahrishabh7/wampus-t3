@@ -15,7 +15,7 @@ export const Card = (props: { buildingData: BuildingWithImage }) => {
     <div className="h-96">
       {" "}
       <Link href={`/building/${props.buildingData.building.id}`}>
-        <div className="h-full max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+        <div className="shadow-blue h-full max-w-sm rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800">
           <a href="#">
             <div className="relative h-3/5 overflow-hidden">
               {" "}
