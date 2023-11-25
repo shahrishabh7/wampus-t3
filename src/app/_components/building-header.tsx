@@ -3,15 +3,24 @@ import { api } from "~/trpc/server";
 import Image from "next/image";
 import { Building } from "@prisma/client";
 import { RouterOutputs } from "~/trpc/shared";
+import { calculateRangeWithOutliers } from "~/utils/building-stats";
 
 type BuildingWithImage = RouterOutputs["building"]["getAll"][number];
+type Leases = RouterOutputs["lease"]["getAll"];
 
-export const BuildingHeader = (props: { buildingData: BuildingWithImage }) => {
+export const BuildingHeader = (props: {
+  buildingData: BuildingWithImage;
+  leaseData: Leases;
+}) => {
   if (!props.buildingData) {
     return <div>No building data found...</div>;
   }
 
   const buildingData = props.buildingData;
+  const leaseData = props.leaseData;
+  const rentRange = calculateRangeWithOutliers(
+    leaseData.map((lease) => lease.rent),
+  );
 
   return (
     <div className="border-b-4 border-gray-300 p-4 lg:flex lg:items-center lg:justify-between">
@@ -58,7 +67,11 @@ export const BuildingHeader = (props: { buildingData: BuildingWithImage }) => {
                 clipRule="evenodd"
               />
             </svg>
-            $1,100k &ndash; $1,300k
+            {rentRange !== null && rentRange[0] !== rentRange[1]
+              ? `$${rentRange[0]} - $${rentRange[1]}`
+              : rentRange !== null
+                ? `$${rentRange[0]}`
+                : "No valid values after removing outliers."}
           </div>
         </div>
       </div>

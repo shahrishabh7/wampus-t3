@@ -23,7 +23,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
             </button>
           </Link>
         </div>
-        <BuildingHeader buildingData={building[0]}></BuildingHeader>
+        <BuildingHeader
+          buildingData={building[0]}
+          leaseData={leases}
+        ></BuildingHeader>
         <LeaseView leaseData={leases}></LeaseView>
       </PageLayout>
     </div>
