@@ -1,11 +1,8 @@
-import Link from "next/link";
 import { api } from "~/trpc/server";
-import Image from "next/image";
 import { BuildingCard } from "./building-card";
 
 export default async function BuildingDisplay() {
   const data = await api.building.getAll.query();
-  console.log("data", data);
 
   return (
     <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">

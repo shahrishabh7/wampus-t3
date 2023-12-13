@@ -1,4 +1,9 @@
+// "use client";
+
+import { useState } from "react";
 import BuildingDisplay from "./_components/building-display";
+import { CreateButton } from "./_components/create-button";
+import { CreateBuildingModal } from "./_components/create-modal";
 import { PageLayout } from "./_components/layout";
 
 export default async function Home() {
