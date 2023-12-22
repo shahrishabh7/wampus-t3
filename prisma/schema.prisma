@@ -11,29 +11,91 @@ datasource db {
     relationMode = "prisma"
 }
 
-model Building {
-    id        String @id @default(cuid())
-    name      String
-    address   String
-    amenities String // DB doesn't support list of strings, we'll parse a long string for now
 
-    createdAt DateTime @default(now())
+model User {
+    // pk
+    user_id      String @id @default(cuid())
+
+    // other fields
+    name    String
+    email   String
+    address String
+    bio     String
+
+    // links to other tables
+    leases  Lease[]
 }
 
-model Lease {
-    id                  String   @id @default(cuid())
-    name                String
-    bedroom_count       Int
-    bathroom_count      Int
-    sqft                Int
-    rent                Int
-    building_id         String   @map("building_id")
-    building_name       String
-    signing_date        DateTime @default(now())
-    average_walk_time   Int
-    satisfaction_rating Float
 
-    create_date DateTime @default(now())
+model Building {
+    // pk
+    building_id String @id @default(cuid())
 
+    // other fields
+    name        String
+    address     String
+
+    // links to other tables
+    amenities   Amenity[]
+    leases      Lease[]
+    floor_plans FloorPlan[]
+}
+
+
+model Amenity {
+    // pk
+    amenity_id  String @id @default(cuid())
+
+    // other fields
+    name        String
+    buildings   Building[]
+}
+
+
+model FloorPlan {
+    // pk
+    floor_plan_id   String @id @default(cuid())
+
+    // fk
+    building_id     String
+
+    // other fields
+    name            String
+    sqft            Int
+    bed_ct          Int
+    bath_ct         Int
+    leases          Lease[]
+
+    // relations
+    building Building @relation(fields: [building_id], references: [building_id], onDelete: Cascade)
+    
     @@index([building_id])
+}
+
+
+model Lease {
+    // pk
+    lease_id            String   @id @default(cuid())
+
+    // fk
+    user_id             String
+    building_id         String
+    floor_plan_id       String
+
+    // other fields
+    name                String
+    ind_bedroom         Boolean
+    ind_bathroom        Boolean
+    rent                Float
+    premium             Float
+    signing_date        DateTime @default(now())
+
+    // relations
+    user User @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+    building Building @relation(fields: [building_id], references: [building_id], onDelete: Cascade)
+    floor_plans FloorPlan @relation(fields: [floor_plan_id], references: [floor_plan_id], onDelete: Cascade)
+
+    @@index([user_id])
+    @@index([building_id])
+    @@index([floor_plan_id])
 }
