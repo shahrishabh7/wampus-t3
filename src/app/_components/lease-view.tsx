@@ -19,9 +19,11 @@ export const LeaseView = (props: { leaseData: Leases }) => {
 
   const data = props.leaseData;
   const averageRent = calculateAverage(data.map((lease) => lease.rent));
+  /*
   const satisfactionRating = calculateAverage(
     data.map((lease) => lease.satisfaction_rating),
   );
+  */
 
   return (
     <div className="flex p-2">
@@ -31,7 +33,7 @@ export const LeaseView = (props: { leaseData: Leases }) => {
       ></TremorCard>
       <TremorCard
         title={"Average Satisfaction Rating"}
-        value={satisfactionRating.toFixed(1)}
+        value={"Hello"}
       ></TremorCard>
       <TremorCard title={"asdf"} value={"asdf"}></TremorCard>
     </div>
