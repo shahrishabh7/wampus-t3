@@ -39,8 +39,7 @@ const addImagesToBuildings = async (buildings: Building[]) => {
 export const buildingsRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
     const buildings = await ctx.db.building.findMany({
-      take: 100,
-      orderBy: [{ createdAt: "desc" }],
+      take: 100
     });
     return addImagesToBuildings(buildings);
   }),
@@ -53,7 +52,7 @@ export const buildingsRouter = createTRPCRouter({
     .query(async ({ ctx, input }) => {
       const building = await ctx.db.building.findFirst({
         where: {
-          id: input.id,
+          building_id: input.id,
         },
         take: 100,
       });
